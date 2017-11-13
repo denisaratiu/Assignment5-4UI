@@ -102,17 +102,15 @@ public class OrderedLinkedList {
         for (int i = 0; i < position; i++) {
             node = node.getNext();
         }
-
         return node.getNum();
     }
 
     public void remove(int num) {
-// start at beginning of list
+        // start at beginning of list
         // see if it is first item in the list
         // ...if no items exist 
         if (curr != null) {
             // remove
-
             // items exist in the list
             // make a counter 
             int i = -1;

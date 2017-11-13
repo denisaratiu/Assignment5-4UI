@@ -22,58 +22,40 @@ public class ArrayADT {
     }
 
     public void add(int index, int num) {
-        // if there are no items in the list
-        if (numItems == 0 && index == 0) {
-            // position 0 is the number
-            arrayList[0] = num;
-            // increase the size counter
-            numItems++;
-        }
         // if there is room to insert the number
-        if (index < arrayList.length) {
-            // put the item in the array
-            arrayList[index] = num;
-            numItems++;
+        if (numItems == arrayList.length) {
 
-        } else {
             // make more room
             int[] temp = new int[arrayList.length * 2];
             // copy items over
-            for (int i = 0; i < arrayList.length; i++) {
+            for (int i = 0; i < numItems; i++) {
                 temp[i] = arrayList[i];
             }
             // becomes new array
             arrayList = temp;
-            // add item
-            arrayList[numItems] = num;
-            numItems++;
-
-            // shift positions
-            for (int i = numItems - 2; i < index; i++) {
-                arrayList[i] = arrayList[i + 1];
-            }
-            arrayList[index] = num;
         }
+        // shift positions by shuffling up
+        for (int i = numItems - 1; i >= index; i--) {
+            arrayList[i + 1] = arrayList[i];
+        }
+        // put the item in the array
+        arrayList[index] = num;
+        numItems++;
     }
 
-    public void remove(int index) {
-        // if there are no items in the list cannot remove anything
-        if (numItems == 0) {
-            System.out.println("There are no items in the list!");
-            // if there is one item in the list can only remove that one and you are left with nothing
-        } else if (numItems == 1) {
-            // decrease the size counter
-            numItems--;
-            System.out.println("There are no more items in the list!");
-            // make sure there are items in the list and the index is less than the num items
-        } else if (numItems > 0 && index < numItems) {
-            // remove the item 
+    public int remove(int index) {
+        // create a value that stores the index of the number inputted
+        int oldValue = get(index);
+        // shuffle down 
+        if (index >= 0 && index <= numItems) {
             for (int i = index; i < numItems; i++) {
                 arrayList[i] = arrayList[i + 1];
-                // decrease the size counter
-                numItems--;
             }
+            arrayList[numItems - 1] = arrayList.length - 1;
+            // decrease the size counter
+            numItems--;
         }
+        return oldValue;
     }
 
     public int size() {
@@ -96,11 +78,14 @@ public class ArrayADT {
 
         // create an empty stack
         ArrayADT list = new ArrayADT();
-        list.add(0, 1);
-        list.add(1, 3);
+        list.add(0, 19);
+        list.add(1, 1);
         list.add(2, 4);
-        list.add(3, 1);
+        list.add(3, 9);
         list.add(4, 1);
+        list.add(4, 3);
+        list.add(4, 5);
+        list.add(5, 2);
         list.add(6, 3);
         list.add(7, 1);
         list.add(8, 9);
@@ -111,10 +96,8 @@ public class ArrayADT {
         list.add(14, 3);
         list.add(14, 5);
         list.add(11, 5);
-    //    list.remove(11);
+        list.remove(4);
 
-        //   list.print();
-        System.out.println(list.get(15));
-        System.out.println();
+        System.out.println(list.get(16));
     }
 }
