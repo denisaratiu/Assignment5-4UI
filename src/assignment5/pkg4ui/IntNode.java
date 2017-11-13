@@ -7,7 +7,7 @@ package assignment5.pkg4ui;
 
 /**
  *
- * @author lamon
+ * @author ratid6445
  */
 public class IntNode {
     

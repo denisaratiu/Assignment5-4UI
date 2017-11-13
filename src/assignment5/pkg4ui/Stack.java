@@ -7,7 +7,7 @@ package assignment5.pkg4ui;
 
 /**
  *
- * @author Florin
+ * @author ratid6445
  */
 
 public class Stack {
